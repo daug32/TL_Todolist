@@ -1,0 +1,39 @@
+<div class="app">
+
+    <h1 class="title">Todo list</h1>
+    <form #myForm="ngForm">
+        <input ngModel 
+            class="app__input"
+            name="task" 
+            type="text" 
+            placeholder="Enter what you are gonna do">
+        <button class="app__button" (click)="addTask(myForm)">Add it!</button>
+    </form>
+
+    <div class="app__tasks-container">
+
+        <div class="app__tasks-list-container">
+            <div *ngIf="tasks.length > 0">  
+                <h2 class="app__tasks-header title">Unfinished tasks</h2>
+                <app-task
+                    *ngFor="let task of tasks"
+                    [task]="task"
+                    (onDeleteTask)="onDeleteTask($event)"
+                    (onCompleteTask)="onCompleteTask($event)"
+                ></app-task>
+            </div>
+        </div>
+
+        <div class="app__tasks-list-container">
+            <div *ngIf="completedTasks.length > 0">
+                <h2 class="app__tasks-header title">Completed tasks</h2>
+                <app-task
+                    *ngFor="let task of completedTasks"
+                    [showButtons]="false"
+                    [task]="task"
+                ></app-task>
+            </div>
+        </div>
+
+    </div>
+</div>
