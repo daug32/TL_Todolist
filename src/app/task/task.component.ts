@@ -1,5 +1,5 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { TaskModel } from 'src/models/taskModel';
+import { Task } from './shared/task.model';
 
 @Component({
   selector: 'app-task',
@@ -7,9 +7,8 @@ import { TaskModel } from 'src/models/taskModel';
   styleUrls: ['./task.component.css']
 })
 
-export class TaskComponent 
-{
-  @Input() task!: TaskModel;
+export class TaskComponent {
+  @Input() task!: Task;
   @Input() showButtons: boolean = true;
   
   @Output() onDeleteTask = new EventEmitter<number>();

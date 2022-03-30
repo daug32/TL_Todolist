@@ -1,7 +1,7 @@
 
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { TaskModel } from 'src/models/taskModel';
+import { Task } from './task/shared/task.model';
 
 @Component({
   selector: 'app-root',                 // HTML tag for this component
@@ -12,8 +12,8 @@ import { TaskModel } from 'src/models/taskModel';
 export class AppComponent 
 {
   lastTaskId: number;
-  tasks: Array<TaskModel>;
-  completedTasks: Array<TaskModel>;
+  tasks: Array<Task>;
+  completedTasks: Array<Task>;
 
   constructor() 
   {
@@ -22,26 +22,27 @@ export class AppComponent
     this.completedTasks = [];
   }
 
-  addTask( myForm: NgForm ) 
-  {
+  addTask( myForm: NgForm ) {
     let data: string = myForm.value.task;
     let newId: number = this.lastTaskId++;
     if( data.length < 1 ) return;
 
-    this.tasks.push( new TaskModel( newId, data ) );
+    let task: Task = {
+      id: newId,
+      data: data
+    };
+    this.tasks.push( task );
   }
 
-  onCompleteTask( id: number ): void 
-  {
-    let taskId = this.tasks.findIndex( el => el.id == id );
-    if( taskId < 0 ) return;
+  onCompleteTask( id: number ): void {
+    let taskIndex = this.tasks.findIndex( el => el.id == id );
+    if( taskIndex < 0 ) return;
     
-    this.completedTasks.push( this.tasks[ taskId ] );
-    this.tasks.splice( taskId, 1 );
+    this.completedTasks.push( this.tasks[ taskIndex ] );
+    this.tasks.splice( taskIndex, 1 );
   }
 
-  onDeleteTask( id: number ): void 
-  {
+  onDeleteTask( id: number ): void {
     this.tasks = this.tasks.filter( el => el.id != id );
   }
 }

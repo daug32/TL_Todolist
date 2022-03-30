@@ -28,6 +28,7 @@
             <div *ngIf="completedTasks.length > 0">
                 <h2 class="app__tasks-header title">Completed tasks</h2>
                 <app-task
+                    class="app__task"
                     *ngFor="let task of completedTasks"
                     [showButtons]="false"
                     [task]="task"

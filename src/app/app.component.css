@@ -36,7 +36,18 @@
     flex-direction: column;
 }
 
+.app__tasks-statement-block
+{
+    width: 100%;
+}
+
 .app__tasks-header
 {
+    width: 100%;
     text-align: center;
+}
+
+.app__task
+{
+    width: 100%;
 }
