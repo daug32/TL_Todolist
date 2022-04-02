@@ -1,5 +1,5 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
-import { Task } from './shared/task.model';
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task',
@@ -9,11 +9,10 @@ import { Task } from './shared/task.model';
 
 export class TaskComponent {
   @Input() task!: Task;
-  @Input() showButtons: boolean = true;
   
-  @Output() onDeleteTask = new EventEmitter<number>();
-  @Output() onCompleteTask = new EventEmitter<number>();
+  @Output() onDeleteTask = new EventEmitter<Task>();
+  @Output() onCompleteTask = new EventEmitter<Task>();
 
-  delete = () => this.onDeleteTask.emit( this.task.id );
-  complete = () => this.onCompleteTask.emit( this.task.id );
+  delete = () => this.onDeleteTask.emit( this.task );
+  complete = () => this.onCompleteTask.emit( this.task );
 }

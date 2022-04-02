@@ -13,27 +13,29 @@
     <div class="app__tasks-container">
 
         <div class="app__tasks-list-container">
-            <div *ngIf="tasks.length > 0">  
-                <h2 class="app__tasks-header title">Unfinished tasks</h2>
-                <app-task
-                    *ngFor="let task of tasks"
-                    [task]="task"
-                    (onDeleteTask)="onDeleteTask($event)"
-                    (onCompleteTask)="onCompleteTask($event)"
-                ></app-task>
-            </div>
+            <h2 class="app__tasks-header title">Unfinished tasks</h2>
+            <p *ngIf="tasks.length < 1" class="text">
+                There are no tasks yet!
+            </p>
+            <app-task
+                *ngFor="let task of tasks"
+                [task]="task"
+                (onDeleteTask)="onDeleteTask($event)"
+                (onCompleteTask)="onCompleteTask($event)"
+            ></app-task>
         </div>
 
         <div class="app__tasks-list-container">
-            <div *ngIf="completedTasks.length > 0">
-                <h2 class="app__tasks-header title">Completed tasks</h2>
-                <app-task
-                    class="app__task"
-                    *ngFor="let task of completedTasks"
-                    [showButtons]="false"
-                    [task]="task"
-                ></app-task>
-            </div>
+            <h2 class="app__tasks-header title">Completed tasks</h2>
+            <p *ngIf="completedTasks.length < 1" class="text">
+                No completed tasks yet
+            </p>
+            <app-task
+                class="app__task"
+                *ngFor="let task of completedTasks"
+                (onDeleteTask)="onDeleteTask($event)"
+                [task]="task"
+            ></app-task>
         </div>
 
     </div>

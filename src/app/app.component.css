@@ -1,6 +1,6 @@
 .app
 {
-    margin-top: 150px;
+    margin-top: 10vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -11,6 +11,11 @@
 {
     min-width: 200px;
     height: 20px;
+}
+
+.app__input:focus
+{
+    outline: none;
 }
 
 .app__button
